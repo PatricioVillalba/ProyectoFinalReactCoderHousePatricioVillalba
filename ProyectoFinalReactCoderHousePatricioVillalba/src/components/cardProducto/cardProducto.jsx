@@ -14,7 +14,6 @@ export default function cardProducto({ producto }) {
   const handleRestarCantidad = () => {
     const updatedCartItems = cartItems
       .map((item) => {
-        // const updatedCartItems = cartItems.map((item) => {
         if (item.id === producto.id) {
           const updatedItem = { ...item, cantidad: item.cantidad - 1 };
           return updatedItem;
@@ -25,26 +24,50 @@ export default function cardProducto({ producto }) {
     setCartItems(updatedCartItems);
   };
 
+  const handleSumarCantidad = () => {
+    const updatedCartItems = cartItems.map((item) => {
+      if (item.id === producto.id) {
+        const nuevaCantidad = parseInt(item.cantidad) + 1;
+        const updatedItem = {
+          ...item,
+          cantidad: nuevaCantidad <= item.stock ? nuevaCantidad : item.stock,
+        };
+        return updatedItem;
+      }
+      return item;
+    });
+    setCartItems(updatedCartItems);
+  };
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    // <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 , margin: '20px', padding: '10px', border: '5px solid goldenrod', color: '#FFFFFF', backgroundColor: '#242424' }}>
       <CardMedia
         sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
-        title="green iguana"
+        image={producto.imagen}
+        title={producto.nombre}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {producto.nombre.slice(0, 10)}..
         </Typography>
-        Cantidad:{producto.cantidad}
+        <Typography variant="subtitle1" component="div">
+          Cantidad:{producto.cantidad}
+        </Typography>
+        <Typography variant="body2">
+          stock disponible:{producto.stock}
+        </Typography>
+        <Typography variant="body2">
+         $:{producto.precio}
+        </Typography>
       </CardContent>
-      <CardActions>
-        <Boton onClick={handleRestarCantidad} className="error-button">
+      <CardActions sx={{ justifyContent: 'center' }}>
+        <button onClick={handleRestarCantidad} className="error-button">
           -
-        </Boton>
-        <Boton onClick={""} className="error-button">
+        </button>
+        <button onClick={handleSumarCantidad} className="error-button">
           +
-        </Boton>
+        </button>
       </CardActions>
     </Card>
   );

@@ -1,10 +1,7 @@
 import "./App.css";
-
-// import { collection, query, where, getDocs } from "firebase/firestore";
-// import { db } from "./firebase/firebaseConfig";
-// import { useState } from "react";
-// import { useEffect } from "react";
+import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import React from "react";
 // componentes
@@ -14,21 +11,27 @@ import NavBar from "./components/NavBar/NavBar";
 import HomePage from "./Views/HomePage";
 import FormPage from "./Views/FormPage";
 import CarritoPage from "./Views/CarritoPage";
+import Detalles from "./Views/DetailPage";
+import Categoria from "./Views/CategoriaPage";
+import CompraExitosa from "./Views/CompraExitosaPage";
 
 import { CartProvider } from "./contexts/CartContext ";
 
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="app-container">
         <Router>
           {/* <Header /> */}
           <CartProvider>
             <NavBar />
-            <Routes>
+            <Routes >
               {<Route path="/" element={<HomePage />} />}
               {<Route path="/formulario" element={<FormPage />} />}
+              {<Route path="/CompraExitosaPage" element={<CompraExitosa />} />}
               {<Route path="/carrito" element={<CarritoPage />} />}
+              {<Route path='/detail/:id' element={<Detalles/>}/>} 
+              {<Route path='/categoria/:categoria' element={<Categoria/>}/>} 
             </Routes>
           </CartProvider>
         </Router>

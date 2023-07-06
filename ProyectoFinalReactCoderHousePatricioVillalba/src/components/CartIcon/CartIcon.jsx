@@ -10,10 +10,9 @@ const CartIcon = () => {
   return (
     <div>
       <Link to="/carrito" className="navbar-brand" aria-current="page">
-        <IconButton aria-label="Carrito de compras">
-          <Badge badgeContent={cartItems.length} style={{ color: "white" }}>
+        <IconButton  aria-label="Carrito de compras">
+          <Badge badgeContent={cartItems.length} color="secondary">
             <ShoppingCartIcon style={{ color: "white" }} />
-            {/* <span>{cartItems.length}</span> */}
           </Badge>
         </IconButton>
       </Link>
