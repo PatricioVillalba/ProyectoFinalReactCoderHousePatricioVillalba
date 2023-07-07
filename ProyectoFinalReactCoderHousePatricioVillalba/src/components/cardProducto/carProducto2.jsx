@@ -17,7 +17,7 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 export default function ActionAreaCard({ producto }) {
     const { cartItems, setCartItems } = useContext(CartContext);
     const [botonPresionado, setBotonPresionado] = useState(false);
-
+   
     const agregarProducto = () => {
         const nuevoProducto = {
           id: producto.id,
@@ -30,10 +30,10 @@ export default function ActionAreaCard({ producto }) {
         };
         setCartItems((prevElementos) => prevElementos.concat(nuevoProducto));
     };
-    const verificarProductoEnCarrito = (producto) => {
-        return cartItems.some((item) => item.id === producto.id);
-    };
-    const estaEnCarrito = verificarProductoEnCarrito(producto);
+        const verificarProductoEnCarrito = (producto) => {
+          return cartItems.some((item) => item.id === producto.id);
+      };
+      const estaEnCarrito = verificarProductoEnCarrito(producto);
     return (
         <Card sx={{ maxWidth: 350 , margin: '20px', padding: '10px', border: '5px solid goldenrod', color: '#FFFFFF', backgroundColor: '#242424' }}>
             <CardActionArea>
